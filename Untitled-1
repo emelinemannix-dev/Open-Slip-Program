@@ -1,1 +1,39 @@
-print "Hello World"
+//
+//  ContentView.swift
+//  openslip
+//
+//  Created by Emeline Mannix on 3/16/26.
+//
+
+import SwiftUI
+
+struct ContentView: View {
+    @State private var name: Int
+    var body: some View {
+        VStack {
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundStyle(.tint)
+            Text("What is your name?")
+            Text("hello world")
+            let prompt = ("123")
+            Text(prompt)
+            TextField("Enter your name", text: name)
+                .padding()
+            if name = 1 {
+                Text("correct")
+            }
+            Text("Wrong")
+        }
+        .padding()
+    }
+    
+}
+
+
+#Preview {
+    ContentView()
+
+    //let prompt2 = readLine()
+    
+}
