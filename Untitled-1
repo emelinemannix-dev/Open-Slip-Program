@@ -1,39 +1,56 @@
 //
 //  ContentView.swift
-//  openslip
+//  OpenSlipREAL
 //
-//  Created by Emeline Mannix on 3/16/26.
+//  Created by Emeline Mannix on 3/30/26.
 //
 
 import SwiftUI
 
+
 struct ContentView: View {
-    @State private var name: Int
+    var body: some View {
+        HStack {
+            DayForecast(day: "Mon", high: 70, low: 50)
+            
+            DayForecast(day: "Tue", high: 60, low: 40)
+            
+            Name(yourname)
+        }
+    }
+}
+
+
+struct DayForecast: View {
+    let day: String
+    let high: Int
+    let low: Int
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("What is your name?")
-            Text("hello world")
-            let prompt = ("123")
-            Text(prompt)
-            TextField("Enter your name", text: name)
-                .padding()
-            if name = 1 {
-                Text("correct")
-            }
-            Text("Wrong")
+            Text(day)
+            Image(systemName: "sun.max.fill")
+                .foregroundStyle(Color.yellow)
+            Text("High: 70")
+            Text("Low: 50")
         }
         .padding()
     }
-    
+}
+
+struct Name: View {
+    let yourname: Int
+   
+   var body: some View {
+        VStack {
+            TextField("What is your name", value: yourname, format: .number)
+        }
+    }
+
+
 }
 
 
 #Preview {
     ContentView()
-
-    //let prompt2 = readLine()
-    
 }
