@@ -9,47 +9,87 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @State var yourname: String = ""
+    @State var lastname: String = ""
+    let emptylist = ["1","2"]
     var body: some View {
-        HStack {
-            DayForecast(day: "Mon", high: 70, low: 50)
-            
-            DayForecast(day: "Tue", high: 60, low: 40)
-            
-            Name(yourname)
-        }
-    }
-}
-
-
-struct DayForecast: View {
-    let day: String
-    let high: Int
-    let low: Int
-    
-    var body: some View {
+        
         VStack {
-            Text(day)
-            Image(systemName: "sun.max.fill")
-                .foregroundStyle(Color.yellow)
-            Text("High: 70")
-            Text("Low: 50")
+                        //  DayForecast(day: "Mon", high: 70, low: 50)
+            
+            //  DayForecast(day: "Tue", high: 60, low: 40)
+            
+            //Name()
+            
+            //Text(yourname)
+            
+            
+            //Handle1(firstname, lastname)
+            TextField("What is your name", text: $yourname)
+               .padding()
+            TextField("Lastname please", text: $lastname)
+            Text(yourname)
+            
+            
+            List {
+                ForEach(emptylist, id: \.self) { item in
+                    Text(item)
+                }
+            }
+           // append the list now adding yourname & lastname
+
         }
-        .padding()
+//        let emptylist = [yourname]
+//        Text(emptylist)
     }
 }
+//struct emptylist: View {
+//    let thelist: List = []
+//    Text(thelist)
+//}
+////struct DayForecast: View {
+//    let day: String
+//    let high: Int
+//    let low: Int
+//    
+//    var body: some View {
+//        VStack {
+//            Text(day)
+//            //Image(systemName: "sun.max.fill")
+//            //    .foregroundStyle(Color.yellow)
+//            Text("High: 70")
+//            Text("Low: 50")
+//        }
+//        .padding()
+//    }
+//}
+//struct Name: View {
+//    @State var yourname: String = ""
+//    @State var lastname: String = ""
+//    var body: some View {
+//        VStack {
+//            Text("hello")
+//            TextField("What is your name", text: $yourname)
+//            TextField("", text: $lastname)
+//                    }
+       
+   // }
 
-struct Name: View {
-    let yourname: Int
-   
-   var body: some View {
-        VStack {
-            TextField("What is your name", value: yourname, format: .number)
-        }
-    }
 
+//}
 
-}
-
+//struct Handle1: View {
+//    let firstname: String
+//    let lastname: String
+//    
+//    var body: some View {
+//        VStack {
+//            Text(firstname)
+//            Text(lastname)
+//        }
+//    }
+//}
+//
 
 #Preview {
     ContentView()
