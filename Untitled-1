@@ -11,86 +11,53 @@ import SwiftUI
 struct ContentView: View {
     @State var yourname: String = ""
     @State var lastname: String = ""
-    let emptylist = ["1","2"]
+ 
+    let emptylist2 = ["1","13"]
+    @State var emptylist = ["1","2"]
+    @State var A123 = [3,4,5]
+    @State var B123: Int = 0
+    
     var body: some View {
         
         VStack {
-                        //  DayForecast(day: "Mon", high: 70, low: 50)
-            
-            //  DayForecast(day: "Tue", high: 60, low: 40)
-            
-            //Name()
-            
-            //Text(yourname)
-            
-            
+            //This is how you append an integer based on a textbox input
+            TextField("Enter an integer", value: $B123, format: .number)
+                //.keyboardType(.decimalPad)
+                .padding()
+                .onSubmit{A123.append(B123)}
+           List {
+               ForEach(A123, id: \.self) { item in
+                   Text(item, format: .number)
+                }
+            }
+            //Any time you use an integer you should probably do format .number
+            //This is the string version of it
             //Handle1(firstname, lastname)
             TextField("What is your name", text: $yourname)
                .padding()
+               .onSubmit{emptylist.append(yourname)}
             TextField("Lastname please", text: $lastname)
             Text(yourname)
-            
             
             List {
                 ForEach(emptylist, id: \.self) { item in
                     Text(item)
                 }
-            }
-           // append the list now adding yourname & lastname
-
+                        }
+            List {
+                ForEach(emptylist2, id: \.self) { item in
+                    Text(item)
+                    }
+                }
         }
-//        let emptylist = [yourname]
-//        Text(emptylist)
     }
 }
-//struct emptylist: View {
-//    let thelist: List = []
-//    Text(thelist)
-//}
-////struct DayForecast: View {
-//    let day: String
-//    let high: Int
-//    let low: Int
-//    
-//    var body: some View {
-//        VStack {
-//            Text(day)
-//            //Image(systemName: "sun.max.fill")
-//            //    .foregroundStyle(Color.yellow)
-//            Text("High: 70")
-//            Text("Low: 50")
-//        }
-//        .padding()
-//    }
-//}
-//struct Name: View {
-//    @State var yourname: String = ""
-//    @State var lastname: String = ""
-//    var body: some View {
-//        VStack {
-//            Text("hello")
-//            TextField("What is your name", text: $yourname)
-//            TextField("", text: $lastname)
-//                    }
-       
-   // }
 
-
-//}
-
-//struct Handle1: View {
-//    let firstname: String
-//    let lastname: String
-//    
-//    var body: some View {
-//        VStack {
-//            Text(firstname)
-//            Text(lastname)
-//        }
-//    }
-//}
-//
 
 #Preview {
     ContentView()
 }
+
+
+
+//Depth, beam, length, sail/power, amp, days staying, boats coming back,
