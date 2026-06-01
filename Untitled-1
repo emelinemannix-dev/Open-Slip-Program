@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
-
-
+import TabularData
+    
 struct ContentView: View {
+    
     @State var yourname: String = ""
     @State var lastname: String = ""
- 
-    let emptylist2 = ["1","13"]
+    
+    let emptylist2 = ["1","13","12"]
     @State var emptylist = ["1","2"]
     @State var A123 = [3,4,5]
     @State var B123: Int = 0
@@ -20,22 +21,29 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
+            
             //This is how you append an integer based on a textbox input
             TextField("Enter an integer", value: $B123, format: .number)
-                //.keyboardType(.decimalPad)
+            //.keyboardType(.decimalPad)
                 .padding()
                 .onSubmit{A123.append(B123)}
-           List {
-               ForEach(A123, id: \.self) { item in
-                   Text(item, format: .number)
+                
+            List {
+                ForEach(A123, id: \.self) { item in
+                    Text(item, format: .number)
                 }
             }
             //Any time you use an integer you should probably do format .number
             //This is the string version of it
             //Handle1(firstname, lastname)
             TextField("What is your name", text: $yourname)
-               .padding()
-               .onSubmit{emptylist.append(yourname)}
+                .padding()
+                .onSubmit{emptylist.append(yourname)}
+                .onAppear {
+                    loadCSV()
+                    //print(dataFrame)
+                }
+
             TextField("Lastname please", text: $lastname)
             Text(yourname)
             
@@ -43,21 +51,41 @@ struct ContentView: View {
                 ForEach(emptylist, id: \.self) { item in
                     Text(item)
                 }
-                        }
+            }
             List {
                 ForEach(emptylist2, id: \.self) { item in
                     Text(item)
-                    }
                 }
+            }
         }
+        
+        
+        
     }
+    
+    
+        
+    }
+
+func loadCSV(){
+    guard let url = Bundle.main.url(forResource: "Open Slip Data Attempt 1 - Slip_Boat_LOA (1)", withExtension: "csv")
+    else {
+        return
+        print("not working")
+    }
+    do {
+        let dataFrame = try! DataFrame(contentsOfCSVFile: url)
+        //return(dataFrame)
+        print(dataFrame)
+    } catch {
+        print("Error loading CSV: \(error)")
+        }
+       
+    
 }
-
-
 #Preview {
     ContentView()
 }
+//loadCSV()
 
 
-
-//Depth, beam, length, sail/power, amp, days staying, boats coming back,
